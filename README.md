@@ -51,8 +51,16 @@ Show me open purchase orders with vendor, department, and job
 
 ---
 
-## Example Repo Structure
+## Repository Structure
 
+This repository is organized into four layers:
+
+- `skills/` for specialized Claude Code skills
+- `context/` for reusable NetSuite reference material
+- `flows/` for multi-step orchestration
+- `examples/` for prompts, edge cases, and regression checks
+
+```text
 suiteglskills/
 ├── README.md
 ├── LICENSE
@@ -60,30 +68,72 @@ suiteglskills/
 ├── validate-skills.sh
 ├── skills/
 │   ├── suiteql-orchestrator/
+│   │   └── SKILL.md
 │   ├── suiteql-architect/
+│   │   └── SKILL.md
 │   ├── suiteql-intake/
+│   │   └── SKILL.md
 │   ├── suiteql-root-cause/
+│   │   └── SKILL.md
 │   ├── suiteql-writer/
+│   │   └── SKILL.md
 │   ├── suiteql-rewriter/
+│   │   └── SKILL.md
 │   ├── suiteql-validator/
+│   │   └── SKILL.md
 │   ├── suiteql-debugger/
+│   │   └── SKILL.md
 │   ├── suiteql-performance/
-│   └── suiteql-analyst/
+│   │   └── SKILL.md
+│   ├── suiteql-analyst/
+│   │   └── SKILL.md
+│   └── suiteql-reconciler/
+│       └── SKILL.md
 ├── context/
 │   ├── index.md
 │   ├── netsuite_patterns.md
 │   ├── netsuite_rules.md
 │   ├── known_issues.md
 │   ├── odbc_powerbi_rules.md
-│   └── portability.md
+│   ├── portability.md
+│   └── reconciliation_rules.md
 ├── flows/
 │   └── debug_suiteql_orchestrator.md
 └── examples/
     ├── sample_requests.md
     ├── sample_errors.md
     ├── suiteql_test_cases.md
-    └── regression_checks.md
+    ├── regression_checks.md
+    └── reconciliation_cases.md
+   
+```
+---
 
+| Folder      | Purpose                                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------------------- |
+| `skills/`   | Role-based Claude Code skills for writing, debugging, validating, optimizing, and reconciling SuiteQL |
+| `context/`  | Shared reference files containing patterns, rules, portability notes, and known issues                |
+| `flows/`    | Multi-step workflows, especially for debugging and structured problem solving                         |
+| `examples/` | Sample prompts, error cases, regression checks, and reconciliation scenarios                          |
+
+---
+
+## Why this fixes it
+The key is:
+- use triple backticks
+- use `text` after the opening fence
+- keep the tree fully inside the code block
+- do not let GitHub render it as normal paragraph text
+
+---
+
+## Quick terminal commands to update README and push
+
+From your repo root:
+
+```powershell
+code README.md
+```
 ---
 
 ## How to Use in Claude Code
