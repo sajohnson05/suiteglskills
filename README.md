@@ -98,7 +98,8 @@ suiteglskills/
 │   ├── portability.md
 │   └── reconciliation_rules.md
 ├── flows/
-│   └── debug_suiteql_orchestrator.md
+│   ├── debug_suiteql_orchestrator.md
+│   └── reconciler_workflow.md
 └── examples/
     ├── sample_requests.md
     ├── sample_errors.md
@@ -233,6 +234,18 @@ Steps:
 2. Root Cause  
 3. Rewrite  
 4. Validate  
+
+---
+
+### Reconciler workflow
+Located in:
+`flows/reconciler_workflow.md`
+
+Use for:
+- report tie-outs
+- saved search comparisons
+- Power BI to NetSuite validation
+- live validation with NetSuite MCP
 
 ---
 
