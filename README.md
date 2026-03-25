@@ -89,16 +89,20 @@ suiteglskills/
 │   │   └── SKILL.md
 │   └── suiteql-reconciler/
 │       └── SKILL.md
+│   └── suiteql-finance-reporting/
+│       └── SKILL.md
 ├── context/
 │   ├── index.md
+│   ├── known_issues.md
+│   ├── mcp_validation_rules.md
 │   ├── netsuite_patterns.md
 │   ├── netsuite_rules.md
-│   ├── known_issues.md
 │   ├── odbc_powerbi_rules.md
 │   ├── portability.md
 │   └── reconciliation_rules.md
 ├── flows/
 │   ├── debug_suiteql_orchestrator.md
+│   ├── query_build_workflow.md
 │   └── reconciler_workflow.md
 └── examples/
     ├── sample_requests.md
@@ -198,6 +202,11 @@ suiteql-root-cause
 
 suiteql-orchestrator  
 - Coordinates workflow
+
+suiteql-finance-reporting
+- starting from a finance or ops reporting question
+- building backlog, billed vs unbilled, GP, AR/AP, or project profitability views
+- turning reporting logic into a practical SuiteQL design
 
 ---
 
