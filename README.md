@@ -32,7 +32,7 @@ This skill system solves that by:
 ## What You Get
 
 ### 1. Multi-Agent SuiteQL System
-
+  
 | Agent | Purpose |
 |------|--------|
 | suiteql-orchestrator | Manages workflow |
@@ -71,4 +71,4 @@ Located in `/flows/`
 Install the full skill set into Claude Code:
 
 ```bash
-npx skills add https://github.com/YOUR_USERNAME/netsuite-suiteql-skills
+npx skills add https://github.com/sajohnson05/suiteqlskills
