@@ -93,6 +93,8 @@ suiteglskills/
 │       └── SKILL.md
 ├── context/
 │   ├── index.md
+│   ├── context_loading_order.md
+│   ├── customizations.md
 │   ├── known_issues.md
 │   ├── mcp_validation_rules.md
 │   ├── netsuite_patterns.md
@@ -171,80 +173,225 @@ Show backlog sold but not shipped by department
 
 ---
 
-## Skill Usage Guide
+## Recommended Starting Points
 
-suiteql-analyst  
-- Use for business questions
+Use these based on the task:
 
-suiteql-architect  
-- Defines joins and structure
+- writing a new query → `suiteql-analyst` or `suiteql-writer`
+- fixing a broken query → `suiteql-debugger`
+- improving performance → `suiteql-performance`
+- validating totals → `suiteql-reconciler`
+- building finance reporting logic → `suiteql-finance-reporting`
 
-suiteql-writer  
-- Writes queries
+For context routing, see:
+- `context/context_loading_order.md`
 
-suiteql-rewriter  
-- Fixes existing queries without full rewrite
+---
 
-suiteql-validator  
-- Checks correctness and duplication
+## Which Skill Gets Used for Which Problem
 
-suiteql-debugger  
-- Fixes errors
+### `suiteql-analyst`
+Use when:
+- starting from a business question
+- not sure what query should look like
+- need correct grain and scope before SQL is written
 
-suiteql-performance  
-- Optimizes queries for speed and reporting
+### `suiteql-architect`
+Use when:
+- deciding tables, joins, and query structure
+- defining line-level vs header-level output
 
-suiteql-intake  
-- Summarizes request
+### `suiteql-writer`
+Use when:
+- writing a new production-ready SuiteQL query
 
-suiteql-root-cause  
-- Identifies issue
+### `suiteql-rewriter`
+Use when:
+- modifying an existing working query
+- fixing only part of a query
+- preserving existing logic
 
-suiteql-orchestrator  
-- Coordinates workflow
+### `suiteql-validator`
+Use when:
+- checking joins
+- checking grain
+- checking duplication risk
+- reviewing correctness before use
 
-suiteql-finance-reporting
+### `suiteql-debugger`
+Use when:
+- query throws errors
+- results are wrong
+- fields are not exposed
+- joins break unexpectedly
+
+### `suiteql-performance`
+Use when:
+- query is slow
+- query is used in ODBC
+- query feeds Power BI
+- dataset size is too large
+
+### `suiteql-reconciler`
+Use when:
+- tying SuiteQL to NetSuite reports or saved searches
+- validating Power BI totals against source data
+- reconciling header totals vs line sums
+- using NetSuite MCP for live validation when available
+
+### `suiteql-finance-reporting`
+Use when:
 - starting from a finance or ops reporting question
 - building backlog, billed vs unbilled, GP, AR/AP, or project profitability views
-- turning reporting logic into a practical SuiteQL design
+- translating reporting logic into a practical SuiteQL design
+
+### `suiteql-intake`
+Use when:
+- summarizing the request and problem before debugging or rewriting
+
+### `suiteql-root-cause`
+Use when:
+- diagnosing the most likely NetSuite-specific failure point
+
+### `suiteql-orchestrator`
+Use when:
+- coordinating multiple specialized skills into one workflow
 
 ---
 
 ## Core Context Files
 
-netsuite_patterns.md  
-- Proven queries
+### `context/index.md`
+High-level guide for locating the right context file quickly.
 
-netsuite_rules.md  
-- SuiteQL rules
+### `context/context_loading_order.md`
+Defines which context files should be loaded first based on the task:
+- new query writing
+- debugging
+- reconciliation
+- Power BI / ODBC optimization
+- finance reporting
+- portability
 
-known_issues.md  
-- Common failures
+### `context/customizations.md`
+Captures business-specific logic and local reporting assumptions for this NetSuite environment.
 
-odbc_powerbi_rules.md  
-- Reporting optimization
+### `context/netsuite_patterns.md`
+Proven working query patterns from the source environment.
 
-portability.md  
-- Adapting to other NetSuite environments
+### `context/netsuite_rules.md`
+Core SuiteQL rules and constraints.
 
-index.md  
-- Context navigation
+### `context/known_issues.md`
+Real failure cases and common traps.
+
+### `context/odbc_powerbi_rules.md`
+Guidance for extraction-friendly query design for Power BI and ODBC.
+
+### `context/mcp_validation_rules.md`
+Rules for using NetSuite MCP safely and clearly when performing live validation.
+
+### `context/reconciliation_rules.md`
+Rules for disciplined tie-outs and variance analysis.
+
+### `context/portability.md`
+Guidance for adapting this system to another NetSuite environment.
 
 ---
 
-## Debug Workflow
+## Which Skill Gets Used for Which Problem
 
+### `suiteql-analyst`
+Use when:
+- starting from a business question
+- not sure what query should look like
+- need correct grain and scope before SQL is written
+
+### `suiteql-architect`
+Use when:
+- deciding tables, joins, and query structure
+- defining line-level vs header-level output
+
+### `suiteql-writer`
+Use when:
+- writing a new production-ready SuiteQL query
+
+### `suiteql-rewriter`
+Use when:
+- modifying an existing working query
+- fixing only part of a query
+- preserving existing logic
+
+### `suiteql-validator`
+Use when:
+- checking joins
+- checking grain
+- checking duplication risk
+- reviewing correctness before use
+
+### `suiteql-debugger`
+Use when:
+- query throws errors
+- results are wrong
+- fields are not exposed
+- joins break unexpectedly
+
+### `suiteql-performance`
+Use when:
+- query is slow
+- query is used in ODBC
+- query feeds Power BI
+- dataset size is too large
+
+### `suiteql-reconciler`
+Use when:
+- tying SuiteQL to NetSuite reports or saved searches
+- validating Power BI totals against source data
+- reconciling header totals vs line sums
+- using NetSuite MCP for live validation when available
+
+### `suiteql-finance-reporting`
+Use when:
+- starting from a finance or ops reporting question
+- building backlog, billed vs unbilled, GP, AR/AP, or project profitability views
+- translating reporting logic into a practical SuiteQL design
+
+### `suiteql-intake`
+Use when:
+- summarizing the request and problem before debugging or rewriting
+
+### `suiteql-root-cause`
+Use when:
+- diagnosing the most likely NetSuite-specific failure point
+
+### `suiteql-orchestrator`
+Use when:
+- coordinating multiple specialized skills into one workflow
+
+---
+
+## Workflows
+
+### Debug workflow
 Located in:
+`flows/debug_suiteql_orchestrator.md`
 
-flows/debug_suiteql_orchestrator.md
+Use for:
+- broken queries
+- duplicate rows
+- wrong totals
+- field exposure issues
+- join troubleshooting
 
-Steps:
-1. Intake  
-2. Root Cause  
-3. Rewrite  
-4. Validate  
+### Query build workflow
+Located in:
+`flows/query_build_workflow.md`
 
----
+Use for:
+- building a new query from a business question
+- defining grain before writing SQL
+- choosing the correct proven pattern
+- producing practical, testable SuiteQL
 
 ### Reconciler workflow
 Located in:
@@ -255,6 +402,7 @@ Use for:
 - saved search comparisons
 - Power BI to NetSuite validation
 - live validation with NetSuite MCP
+- variance explanation and next-step recommendations
 
 ---
 
