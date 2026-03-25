@@ -52,11 +52,11 @@ Always filter early in the query:
 
 ### Example:
 
+```sql
 WHERE
 PO.Type = 'PurchOrd'
 AND PO.TranDate >= TO_DATE('2025-01-01','YYYY-MM-DD')
-
-
+```
 ---
 
 ## 4. Avoid Unnecessary Joins
@@ -77,7 +77,9 @@ Define whether your dataset is:
 ### Line-Level
 - one row per transaction line
 - requires:
-- TL.MainLine = 'F'
+```sql
+TL.MainLine = 'F'
+```
 
 ### Header-Level
 - one row per transaction
@@ -122,10 +124,13 @@ Avoid:
 - display names
 
 ### Example:
+```sql
 - TL.Entity = Job.ID
-
-- Not: BUILTIN.DF(TL.Entity)
-
+```
+- Not:
+```sql
+BUILTIN.DF(TL.Entity)
+```
 
 ---
 
@@ -198,8 +203,10 @@ Watch for:
 
 Only select what you need.
 
-Avoid: SELECT *
-
+Avoid: 
+```sql
+SELECT *
+```
 
 ---
 
@@ -207,7 +214,9 @@ Avoid: SELECT *
 
 Use clear, consistent aliases:
 
+```sql
 PO.TranID AS PurchaseOrderNumber
+```
 
 ---
 
@@ -216,3 +225,18 @@ PO.TranID AS PurchaseOrderNumber
 Design SuiteQL for extraction and performance.
 
 Let Power BI handle presentation and business logic.
+
+---
+
+## When to Break These Rules
+
+These are guidelines, not absolutes.
+
+It is acceptable to deviate when:
+- dataset is small and readability matters more
+- quick ad hoc analysis is needed
+- debugging requires additional fields or transformations
+
+However:
+- production queries should follow these rules
+- anything feeding Power BI or reporting pipelines should prioritize performance and stability
