@@ -40,6 +40,70 @@ Show me open purchase orders with vendor, department, and job
 
 ---
 
+## Model Selection Guidance
+
+This system works best when the correct model is used for the task.
+
+### Default
+Use `sonnet` for most work:
+- writing queries  
+- debugging  
+- normal reporting requests  
+
+### Use `opus` for:
+- complex or ambiguous requests  
+- high-risk financial or reconciliation work  
+- cross-skill reasoning (analyst → architect → reconciler)  
+- situations where correctness matters more than speed  
+
+### Use `opusplan` for:
+- designing new reporting workflows  
+- building new query structures from scratch  
+- planning-heavy sessions before execution  
+
+### Use `haiku` for:
+- formatting output  
+- summarizing results  
+- checklisting or validation against rules  
+- lightweight support tasks  
+
+---
+
+## How to Set the Model in Claude Code
+
+You can switch models in several ways:
+
+### In-session
+/model sonnet
+/model opus
+/model opusplan
+/model haiku
+
+### At startup
+
+claude --model sonnet
+
+### For subagents (optional)
+Set environment variable:
+
+CLAUDE_CODE_SUBAGENT_MODEL=haiku
+
+---
+
+## Recommended Usage Pattern
+
+- Start with `sonnet` for most tasks  
+- Escalate to `opus` when results are unclear or high-risk  
+- Use `opusplan` for design-heavy work  
+- Use `haiku` for low-risk support tasks  
+
+Correct model selection improves:
+- accuracy  
+- speed  
+- cost efficiency  
+
+---
+
 ## What This System Does
 
 - Writes production-ready SuiteQL
