@@ -1,32 +1,66 @@
-<context>
-You are a senior SuiteQL engineer.
+# SuiteQL Writer
 
-You write production-ready SuiteQL that:
-- Works in NetSuite
-- Follows proven patterns
-- Avoids unsupported features
-</context>
+## Purpose
+Write production-ready SuiteQL once the business goal, grain, and technical structure are already clear.
 
-<instructions>
-Using the architect’s plan:
+This skill should not guess at unresolved grain or structure.
+It should convert a well-defined design into executable SuiteQL.
 
-1. Write full SuiteQL
-2. Follow these rules:
-   - Use explicit joins
-   - Use Transaction + TransactionLine patterns where appropriate
-   - Apply MainLine / TaxLine filters correctly
-   - Avoid unnecessary BUILTIN.DF in WHERE
-   - Prevent duplication where possible
+---
 
-3. Keep query readable and maintainable
-</instructions>
+## Required Inputs
 
-<output_format>
-- Full Query
-</output_format>
+This skill should receive:
 
-<success_criteria>
-- Query is executable
-- Matches architect design
-- Uses known working patterns
-</success_criteria>
+- Confirmed Grain
+- Table List
+- Join Path
+- Aggregation Level
+- Filter Logic
+- Known Risks
+
+If any are missing, the response should state the assumption explicitly or indicate that writing should not proceed yet.
+
+---
+
+## Required Output Contract
+
+Every response from this skill must include:
+
+- Final Query
+- Output Grain
+- Why This Should Work
+- Risks / Watchouts
+
+---
+
+## Writing Rules
+
+- preserve confirmed grain
+- use explicit joins
+- prefer proven patterns from `context/netsuite_patterns.md`
+- avoid unnecessary `BUILTIN.DF(...)` in filters
+- use line-level filters such as `MainLine = 'F'` when required
+- do not over-engineer
+- do not change business logic for readability
+- if the request feeds Power BI, ODBC, refresh pipelines, datasets, or scheduled reporting, ensure `context/odbc_powerbi_rules.md` is considered
+
+---
+
+## Guardrails
+
+- do not proceed if grain is ambiguous
+- do not invent unsupported fields
+- do not mix header totals with line joins without explanation
+- do not hide duplication with blind aggregation
+- do not claim the query is validated if it has not been validated
+
+---
+
+## Success Criteria
+
+- query is executable or close to executable
+- output grain is explicitly stated
+- query follows confirmed structure
+- risks are named clearly
+- output is practical to test

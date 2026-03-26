@@ -211,6 +211,27 @@ Expand context only when:
 
 ---
 
+## Automatic Reporting-Destination Loading
+
+If a request mentions:
+- Power BI
+- ODBC
+- refresh
+- extract
+- dataset
+- scheduled reporting
+- dashboard source
+
+Then load:
+- `context/odbc_powerbi_rules.md`
+
+before invoking:
+- `suiteql-writer`
+- `suiteql-performance`
+- `suiteql-finance-reporting`
+
+---
+
 ## Maintenance Rule
 
 When adding new context files:
